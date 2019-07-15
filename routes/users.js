@@ -8,10 +8,12 @@ router.use(bodyParser.json());
 router.get("/", function(req, res, next) {
   console.log(req.query);
   if(req.query.uid&&req.query.name && req.query.email){}
-  var sql = "SELECT * FROM account WHERE email = " + req.query.email;
+  var sql = `SELECT * FROM account WHERE email = ${req.query.email};`
   db.query(sql, (err, data) => {
-    if(err){
-      res.json("error")
+    if(err !== null){
+      res.json(err)
+      console.log(err);
+      
     }
     else {
       if(data.rowCount > 0){
@@ -20,8 +22,9 @@ router.get("/", function(req, res, next) {
       else {
         var createNew = `INSERT INTO account (uid,name,email,created_on,last_login) VALUES (${req.query.uid},${req.query.name},${req.query.email},NOW(),NOW());`
         db.query(createNew, (err, data) => {
-          if(err){
-            res.json("erro")
+          if(err !== null){
+            res.json(err)
+            console.log(err);
           }
           else {
             res.json(data)
