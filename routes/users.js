@@ -8,16 +8,22 @@ router.use(bodyParser.json());
 router.get("/", function(req, res, next) {
   console.log(req.query);
   if(req.query.uid&&req.query.name && req.query.email){
+        var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
+        db.query(createNew, (err, data) => {
+          if(err){
+            res.json("error")
+          }
+          else {
+            res.json(data)
+          }
+        })
+      }
+    }
+   
+   
+  })
+  }
  
-          var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
-          db.query(createNew, (err, data) => {
-           console.log(err);
-           console.log(data);
-           
-           
-          })
-        }
-    
 });
 router.get("/retrive/:id", function(req, res, next) {
   console.log(req.params.id);
