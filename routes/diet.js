@@ -27,6 +27,17 @@ router.get("/cc", function(req, res, next) {
     
   })
 });
+router.get("/ltable", function(req, res, next) {
+  console.log(req.query);
+  // var createNew = `DROP TABLE fityouaccount`
+  var createNew = "SELECT * from account"
+  db.query(createNew, (err, data) => {
+    console.log(data);
+    console.log(err);
+    
+    
+  })
+});
 // router.get("/retrive/:id", function(req, res, next) {
 //   console.log(req.params.id);
 //   // var id = req.params.id;
