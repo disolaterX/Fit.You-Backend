@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 router.get("/", function(req, res, next) {
   console.log(req.query);
   if(req.query.uid&&req.query.name && req.query.email){
-        var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
+        var createNew = `INSERT INTO fityouaccount(uid,name,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
         db.query(createNew, (err, data) => {
           if(err){
             res.json(err)
