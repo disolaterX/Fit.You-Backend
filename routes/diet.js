@@ -19,7 +19,7 @@ router.get("/dontdo", function(req, res, next) {
 router.get("/cc", function(req, res, next) {
   console.log(req.query);
   // var createNew = `DROP TABLE fityouaccount`
-  var createNew = "CREATE TABLE account (uid VARCHAR PRIMARY KEY,name VARCHAR);"
+  var createNew = "CREATE TABLE account (uid TEXT PRIMARY KEY,name TEXT);"
   db.query(createNew, (err, data) => {
     console.log(data);
     console.log(err);
