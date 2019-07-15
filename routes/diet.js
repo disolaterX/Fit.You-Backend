@@ -5,30 +5,30 @@ var bodyParser = require("body-parser");
 
 router.use(bodyParser.json());
 /* GET home page. */
-router.get("/c", function(req, res, next) {
-  console.log(req.query);
-  var createNew = "CREATE TABLE fityouaccount(uid VARCHAR PRIMARY KEY,email VARCHAR (355) UNIQUE ,created_on TIMESTAMP NOT NULL,last_login TIMESTAMP);"
-  db.query(createNew, (err, data) => {
-    console.log(data);
-    console.log(err);
+// router.get("/c", function(req, res, next) {
+//   console.log(req.query);
+//   var createNew = "CREATE TABLE fityouaccount(uid VARCHAR PRIMARY KEY,email VARCHAR (355) UNIQUE ,created_on TIMESTAMP NOT NULL,last_login TIMESTAMP);"
+//   db.query(createNew, (err, data) => {
+//     console.log(data);
+//     console.log(err);
     
     
-  })
-});
-router.get("/retrive/:id", function(req, res, next) {
-  console.log(req.params.id);
-  // var id = req.params.id;
-  // var sql = "SELECT * FROM useraccount WHERE uid = " + id;
-  // db.query(sql, (err, data) => {
-  //   console.log("Error :-");
-  //   console.log(err);
-  //   console.log("");
-  //   console.log("Result :-");
-  //   console.log(data.rowCount);
-  //   console.log(data.rows);
-  //   res.json(data.rows);
-  // });
-});
+//   })
+// });
+// router.get("/retrive/:id", function(req, res, next) {
+//   console.log(req.params.id);
+//   // var id = req.params.id;
+//   // var sql = "SELECT * FROM useraccount WHERE uid = " + id;
+//   // db.query(sql, (err, data) => {
+//   //   console.log("Error :-");
+//   //   console.log(err);
+//   //   console.log("");
+//   //   console.log("Result :-");
+//   //   console.log(data.rowCount);
+//   //   console.log(data.rows);
+//   //   res.json(data.rows);
+//   // });
+// });
 
 //   "SELECT * FROM useraccount",
 // "INSERT INTO useraccount (uid,fullname,email,created_on,last_login) VALUES (8878,'Kartik','disolater.kartik@gmail.com',NOW(),NOW());",
