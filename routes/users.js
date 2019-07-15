@@ -20,7 +20,7 @@ router.get("/", function(req, res, next) {
         res.json(data.rows)
       }
       else {
-        var createNew = `INSERT INTO account VALUES ('${req.query.uid}','${req.query.name}');`
+        var createNew = `INSERT INTO account VALUES (${req.query.uid},${req.query.name});`
         db.query(createNew, (err, data) => {
           if(err !== null){
             res.json(err)
