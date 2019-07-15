@@ -6,12 +6,13 @@ var bodyParser = require("body-parser");
 router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  console.log(req.query);
   if(req.query.uid&&req.query.name && req.query.email){
         var createNew = `INSERT INTO account (uid,name,email) VALUES (${req.uid},${req.name},${req.email});`
         db.query(createNew, (err, data) => {
           if(err){
             res.json(err)
+            console.log(err);
+            
           }
           else {
             res.json(data)
