@@ -7,31 +7,33 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
   console.log(req.query);
-  res.json(req.query)
-  // var sql = "SELECT * FROM fityouaccount WHERE email = " + req.query.email;
-  // db.query(sql, (err, data) => {
-  //   if(err){
-  //     res.json("error")
-  //   }
-  //   else {
-  //     if(data.rowCount > 0){
-  //       res.json(data.rows)
-  //     }
-  //     else {
-  //       var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
-  //       db.query(createNew, (err, data) => {
-  //         if(err){
-  //           res.json("erro")
-  //         }
-  //         else {
-  //           res.json(data)
-  //         }
-  //       })
-  //     }
-  //   }
-   
-   
-  // })
+  if(req.uid&&req.name && req.email){
+    var sql = "SELECT * FROM fityouaccount WHERE email = " + req.query.email;
+    db.query(sql, (err, data) => {
+      if(err){
+        res.json("error")
+      }
+      else {
+        if(data.rowCount > 0){
+          res.json(data.rows)
+        }
+        else {
+          var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
+          db.query(createNew, (err, data) => {
+            if(err){
+              res.json("erro")
+            }
+            else {
+              res.json(data)
+            }
+          })
+        }
+      }
+     
+     
+    })
+  }
+ 
 });
 router.get("/retrive/:id", function(req, res, next) {
   console.log(req.params.id);
