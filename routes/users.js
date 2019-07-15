@@ -7,8 +7,8 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
   console.log(req.query);
-  if(req.query.uid&&req.query.name){}
-        var createNew = `INSERT INTO account VALUES  ('${req.query.uid}','${req.query.name}');`
+  if(req.query.uid&&req.query.name && req.query.email){}
+        var createNew = `INSERT INTO account VALUES  ('${req.query.uid}','${req.query.name}','${req.query.email}');`
         db.query(createNew, (err, data) => {
           if(err !== null){
             res.json(err)
