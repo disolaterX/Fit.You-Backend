@@ -11,7 +11,7 @@ router.get("/", function(req, res, next) {
         var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
         db.query(createNew, (err, data) => {
           if(err){
-            res.json("error")
+            res.json(err)
           }
           else {
             res.json(data)
