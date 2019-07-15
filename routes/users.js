@@ -18,11 +18,6 @@ router.get("/", function(req, res, next) {
           }
         })
       }
-    }
-   
-   
-  })
-  }
  
 });
 router.get("/retrive/:id", function(req, res, next) {
