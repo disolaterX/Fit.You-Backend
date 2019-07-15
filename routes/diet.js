@@ -7,14 +7,14 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.get("/dontdo", function(req, res, next) {
   console.log(req.query);
-  // var createNew = `DROP TABLE useraccount`
+  var createNew = `DROP TABLE fityouaccount`
   // var createNew = "CREATE TABLE fityouaccount(uid VARCHAR PRIMARY KEY,name VARCHAR,email VARCHAR (355) UNIQUE ,created_on TIMESTAMP NOT NULL,last_login TIMESTAMP);"
-  // db.query(createNew, (err, data) => {
-  //   console.log(data);
-  //   console.log(err);
+  db.query(createNew, (err, data) => {
+    console.log(data);
+    console.log(err);
     
     
-  // })
+  })
 });
 // router.get("/retrive/:id", function(req, res, next) {
 //   console.log(req.params.id);
