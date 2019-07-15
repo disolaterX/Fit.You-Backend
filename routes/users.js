@@ -6,20 +6,32 @@ var bodyParser = require("body-parser");
 router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  if(req.query.uid&&req.query.name && req.query.email){
-        var createNew = `INSERT INTO account (uid,name,email) VALUES (${req.uid},${req.name},${req.email});`
+  console.log(req.query);
+  if(req.query.uid&&req.query.name && req.query.email){}
+  var sql = "SELECT * FROM account WHERE email = " + req.query.email;
+  db.query(sql, (err, data) => {
+    if(err){
+      res.json("error")
+    }
+    else {
+      if(data.rowCount > 0){
+        res.json(data.rows)
+      }
+      else {
+        var createNew = `INSERT INTO account (uid,name,email,created_on,last_login) VALUES (${req.query.uid},${req.query.name},${req.query.email},NOW(),NOW());`
         db.query(createNew, (err, data) => {
           if(err){
-            res.json(err)
-            console.log(err);
-            
+            res.json("erro")
           }
           else {
             res.json(data)
           }
         })
       }
- 
+    }
+   
+   
+  })
 });
 router.get("/retrive/:id", function(req, res, next) {
   console.log(req.params.id);
