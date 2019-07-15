@@ -11,7 +11,7 @@ router.get("/", function(req, res, next) {
     var sql = "SELECT * FROM fityouaccount WHERE email = " + req.query.email;
     db.query(sql, (err, data) => {
       if(err !== null){
-        res.json("error")
+        res.json(err)
         console.log("in error");
         
       }
