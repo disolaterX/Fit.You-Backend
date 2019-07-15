@@ -10,7 +10,7 @@ router.get("/", function(req, res, next) {
   if(req.uid&&req.name && req.email){
     var sql = "SELECT * FROM fityouaccount WHERE email = " + req.query.email;
     db.query(sql, (err, data) => {
-      if(err){
+      if(err !== null){
         res.json("error")
       }
       else {
@@ -20,7 +20,7 @@ router.get("/", function(req, res, next) {
         else {
           var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
           db.query(createNew, (err, data) => {
-            if(err){
+            if(err !== null){
               res.json("erro")
             }
             else {
