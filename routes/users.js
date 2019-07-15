@@ -8,33 +8,17 @@ router.use(bodyParser.json());
 router.get("/", function(req, res, next) {
   console.log(req.query);
   if(req.query.uid&&req.query.name){}
-  var sql = `SELECT * FROM account WHERE 'uid' = ${req.query.uid};`
-  db.query(sql, (err, data) => {
-    if(err !== null){
-      res.json(err)
-      console.log(err);
-      
-    }
-    else {
-      if(data.rowCount > 0){
-        res.json(data.rows)
-      }
-      else {
-        var createNew = `INSERT INTO account VALUES ('uid','name') (${req.query.uid},${req.query.name});`
+        var createNew = `INSERT INTO account VALUES  ('${req.query.uid}','${req.query.name}');`
         db.query(createNew, (err, data) => {
           if(err !== null){
             res.json(err)
             console.log(err);
           }
           else {
-            res.json(data)
+            res.json(data.command)
           }
         })
-      }
-    }
-   
-   
-  })
+      
 });
 router.get("/retrive/:id", function(req, res, next) {
   console.log(req.params.id);
