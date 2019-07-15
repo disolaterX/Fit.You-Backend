@@ -7,15 +7,37 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
   console.log(req.query);
-  if(req.uid&&req.name && req.email){
-    console.log("here");
-    
+  if(req.query.uid&&req.query.name && req.query.email){
+    var sql = "SELECT * FROM fityouaccount WHERE email = " + req.query.email;
+    db.query(sql, (err, data) => {
+      if(err !== null){
+        res.json("error")
+        console.log("in error");
+        
+      }
+      else {
+        if(data.rowCount > 0){
+          console.log(data.rows);
+        }
+        else {
           var createNew = `INSERT INTO fityouaccount (uid,fullname,email,created_on,last_login) VALUES (${req.uid},${req.name},${req.email},NOW(),NOW());`
           db.query(createNew, (err, data) => {
-            console.log(err)
-            console.log(data)
+            if(err !== null){
+              res.json("erro")
+              console.log('inner error');
+              
+            }
+            else {
+              console.log(data.rows);
+              res.json(data)
+            }
           })
         }
+      }
+     
+     
+    })
+  }
  
 });
 router.get("/retrive/:id", function(req, res, next) {
