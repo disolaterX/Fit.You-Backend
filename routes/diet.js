@@ -14,7 +14,7 @@ router.get("/dontdo", function(req, res, next) {
   //   console.log(err);
     
     
-  })
+  // })
 });
 // router.get("/retrive/:id", function(req, res, next) {
 //   console.log(req.params.id);
