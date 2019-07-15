@@ -7,8 +7,8 @@ router.use(bodyParser.json());
 /* GET home page. */
 router.get("/", function(req, res, next) {
   console.log(req.query);
-  if(req.query.uid&&req.query.name && req.query.email){}
-  var sql = `SELECT * FROM account WHERE email = ${req.query.email};`
+  if(req.query.uid&&req.query.name){}
+  var sql = `SELECT * FROM account WHERE 'uid' = ${req.query.uid};`
   db.query(sql, (err, data) => {
     if(err !== null){
       res.json(err)
