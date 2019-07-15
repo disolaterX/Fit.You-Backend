@@ -16,6 +16,17 @@ router.get("/dontdo", function(req, res, next) {
     
   })
 });
+router.get("/cc", function(req, res, next) {
+  console.log(req.query);
+  // var createNew = `DROP TABLE fityouaccount`
+  var createNew = "CREATE TABLE account(uid VARCHAR PRIMARY KEY,name VARCHAR,email VARCHAR (355) UNIQUE);"
+  db.query(createNew, (err, data) => {
+    console.log(data);
+    console.log(err);
+    
+    
+  })
+});
 // router.get("/retrive/:id", function(req, res, next) {
 //   console.log(req.params.id);
 //   // var id = req.params.id;
